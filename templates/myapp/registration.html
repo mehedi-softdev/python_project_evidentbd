@@ -8,36 +8,46 @@
 
 {% block content %}
 <!-- main -->
-	<div class="main-w3layouts wrapper">
-		<h1>Registration Form</h1>
-		<div class="main-agileinfo">
-			<div class="agileits-top">
-				<form action="#" method="post">
-					<input class="text" type="text" name="fullname" placeholder="Full Name" required="">
-					<input class="text email" type="email" name="email" placeholder="Email" required="">
-					<input class="text" type="password" name="password" placeholder="Password" required="">
-					<input type="submit" value="SIGNUP">
-				</form>
-				<p>Already have an Account? <a href="/login"> Login Now!</a></p>
-			</div>
+<div class="main-w3layouts wrapper">
+	<h1>Registration Form</h1>
+	<div class="main-agileinfo">
+		<div class="agileits-top">
+			{% if messages %}
+			<ul style="margin: 10px;">
+				{% for message in messages %}
+					<li {% if message.tags %} class="{{ message.tags }}" {% endif %} style="text-align:center;width: 100%;color: rgb(173, 8, 8);">{{ message }}</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			<form action="#" method="post">
+				{% csrf_token %}
+				<input class="text" type="text" name="fullname" placeholder="Full Name" required="">
+				<input class="text email" type="email" name="email" placeholder="Email" required="">
+				<input class="text" type="password" name="password" placeholder="Password" required="">
+				<input type="submit" value="SIGNUP">
+			</form>
+		
+			<p>Already have an Account? <a href="/login"> Login Now!</a></p>
 		</div>
-		<!-- copyright -->
-		<div class="colorlibcopy-agile">
-			<p>© 2018 Colorlib Signup Form. All rights reserved | Design by <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
-		</div>
-		<!-- //copyright -->
-		<ul class="colorlib-bubbles">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
 	</div>
-	<!-- //main -->
+	<!-- copyright -->
+	<div class="colorlibcopy-agile">
+		<p>© 2018 Colorlib Signup Form. All rights reserved | Design by <a href="https://colorlib.com/"
+				target="_blank">Colorlib</a></p>
+	</div>
+	<!-- //copyright -->
+	<ul class="colorlib-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<!-- //main -->
 {% endblock content %}

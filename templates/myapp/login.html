@@ -12,6 +12,13 @@
 		<h1>User Login</h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
+				{% if messages %}
+				<ul style="margin: 10px;">
+					{% for message in messages %}
+						<li {% if message.tags %} class="{{ message.tags }}" {% endif %} style="text-align:center;width: 100%;color: rgb(173, 8, 8);">{{ message }}</li>
+					{% endfor %}
+				</ul>
+				{% endif %}
 				<form action="#" method="post">
                     {% csrf_token %}
 					<input class="text email" type="email" name="email" placeholder="Email" required="">

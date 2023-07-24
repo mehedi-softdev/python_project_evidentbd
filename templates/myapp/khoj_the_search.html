@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block css %}
     <style>
         .common {
@@ -15,23 +16,72 @@
             font-size: 1.1rem;
             padding: 4px;
         }
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+        
+        .logout-btn a {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #f44336;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        
+        .logout-btn a:hover {
+            background-color: #df1e0d;
+        }
     </style>
 {% endblock %}
 
 {% block content %}
-    <form action="#" method="post">
+
+<!-- logout button -->
+<div class="logout-btn">
+    <a href="/accounts/logout/">Logout</a>
+</div>
+<!-- khoj the search form -->
+    <form action="/khoj_the_search/" method="post">
         {% csrf_token %}
         <div class="common">
-            Input values: <input type="text" name="input_values" class="common_field" placeholder="1, 2, 3, 4..." required>
+            Input values: <input type="text" class="common_field" name="comma_separated_input" 
+            value="{{data.array|default:''}}" id="commaSeparatedInput" oninput="validateInput(this)" required>
+            <div id="error-message" style="color: red; display: none;">Please enter comma-separated values only.</div>
         </div>
         <div class="common">
-            Search value: <input type="text" maxlength="1" name="input_value" class="common_field" placeholder="1" required>
+            Search value: <input type="text" pattern="-?[0-9]+" name="search_key" class="common_field"
+            value="{{data.search_key|default:''}}" required>
         </div>
         <div class="common">
             <button type="submit">Khoj</button>
         </div>
     </form>
     <div>
-        <span style="font-weight: 600;">Result: True</span>
+        <span style="font-weight: 600;">Result: 		
+            {% if messages %}
+				{% for message in messages %}
+					<span> {{message}} </span> 
+				{% endfor %}
+			</ul>
+			{% endif %}</span>
     </div>
+{% endblock %}
+
+{% block js %}
+<script>
+    function validateInput(inputField) {
+        const regex = /^(\d+\s*,\s*)*\d+$/;
+
+        const errorMessage = document.getElementById("error-message");
+
+        if (regex.test(inputField.value)) {
+            errorMessage.style.display = "none";
+        } else {
+            errorMessage.style.display = "block";
+        }
+    }
+</script>
 {% endblock %}

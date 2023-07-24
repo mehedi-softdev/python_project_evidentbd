@@ -207,6 +207,10 @@ input.email, input.text.w3lpass {
   color: #fff;
 }
 
+input {
+  margin-bottom: 10px;
+}
+
 input[type="submit"] {
   font-size: .9em;
   color: #fff;

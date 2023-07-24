@@ -11,4 +11,6 @@ urlpatterns = [
 
     # khoj the search
     path('khoj_the_search/', views.khoj_the_search, name="khoj_the_search"),
+    # api response
+    path('api/get_input_values/', views.get_all_input_values, name='get_input_values'),
 ]

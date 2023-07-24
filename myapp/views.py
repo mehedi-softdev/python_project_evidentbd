@@ -128,7 +128,7 @@ def khoj_the_search(request):
 # now implement api response function
 @login_required
 def get_all_input_values(request):
-    
+
     if request.method == 'GET':
         start_datetime = request.GET.get('start_datetime', '')
         end_datetime = request.GET.get('end_datetime', '')

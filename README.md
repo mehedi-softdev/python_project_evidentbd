@@ -21,7 +21,7 @@ To install and run this Django project on your local machine, follow these steps
 - $ `cd python_project_evidentbd`
 
 ### Set up a virtual environment (optional but recommended)::
-- $ `virtualenv venv`
+- $ `python3.8 -m venv venv`
 - $ `source venv/bin/activate`  # On Windows, use `venv\Scripts\activate`
 
 ### Install the project dependencies:
